@@ -10,6 +10,7 @@ function PantryGroupDetails(props) {
             name={item.name}
             count={item.count}
             handleDeleteItem={props.handleDeleteItem}
+            handleModifyItem={props.handleModifyItem}
         />)
     return (
         <div className="flex flex-col gap-4 bg-amber-100  ">
@@ -37,6 +38,7 @@ PantryGroupDetails.propTypes = {
     imageURL: PropTypes.string.isRequired,
     handleDeleteGroup: PropTypes.func.isRequired,
     handleDeleteItem: PropTypes.func.isRequired,
+    handleModifyItem: PropTypes.func.isRequired,
 };
 
 export default PantryGroupDetails;

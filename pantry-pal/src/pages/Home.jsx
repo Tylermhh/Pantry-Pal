@@ -5,6 +5,7 @@ import {useState} from "react";
 import { nanoid } from "nanoid";
 
 function Home() {
+    const [searchQuery, setSearchQuery] = useState("");
 
     const [pantryGroups, setPantryGroups] = useState([
         {
@@ -52,14 +53,41 @@ function Home() {
     ]);
 
     function handleDeleteGroup(groupId) {
-        console.log(`Delete group ${groupId}`);
+        setPantryGroups((prevGroups) => prevGroups.filter(group => group.id !== groupId));
     }
 
     function handleDeleteItem(groupId, itemId) {
-        console.log(`Deleting item ${itemId} from group ${groupId}`);
+        setPantryGroups((prevGroups) =>
+            prevGroups.map((group) =>
+                group.id === groupId
+                    ? { ...group, items: group.items.filter((item) => item.id !== itemId) }
+                    : group
+            )
+        );
     }
 
-    const pantryItems = pantryGroups.map((item) =>
+    function handleModifyItem(groupId, itemId, operation) {
+        setPantryGroups((prevGroups) =>
+            prevGroups.map((group) =>
+                group.id === groupId
+                    ? {...group,
+                        items: group.items.map((item) =>
+                            item.id === itemId
+                                ? {...item,
+                                    count: operation === "add" ? item.count + 1 : Math.max(item.count - 1, 1),
+                                } : item
+                        ),
+                    } : group
+            )
+        );
+    }
+
+
+    const filteredPantryGroups = pantryGroups.filter(group =>
+        group.category.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const pantryItems = filteredPantryGroups.map((item) =>
         <PantryGroup
             key={item.id}
             groupId={item.id}
@@ -67,7 +95,9 @@ function Home() {
             items={item.items}
             imageURL={item.imageURL}
             handleDeleteGroup={handleDeleteGroup}
-            handleDeleteItem={handleDeleteItem}/>
+            handleDeleteItem={handleDeleteItem}
+            handleModifyItem={handleModifyItem}
+        />
     )
 
     function addCategory(pantryGroupName) {
@@ -90,7 +120,7 @@ function Home() {
 
                 {/*list of saved categories*/}
                 <div className="flex flex-col justify-center p-2 gap-2">
-                    <SearchBar />
+                    <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                     <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] md:flex md:flex-wrap gap-6">
                         {pantryItems}
                         <li
