@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar.jsx";
 function Profile() {
     return (
         <>
-            <body className="flex flex-col border-3 bg-amber-100 min-h-screen">
+            <div className="flex flex-col border-3 bg-amber-100 min-h-screen">
                 <div className="sticky top-0 z-1">
                     <Navbar/>
                 </div>
@@ -29,7 +29,7 @@ function Profile() {
                         Sign Out
                     </button>
                 </div>
-            </body>
+            </div>
         </>
     )
 }

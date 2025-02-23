@@ -5,30 +5,85 @@ import {useState} from "react";
 import { nanoid } from "nanoid";
 
 function Home() {
+
     const [pantryGroups, setPantryGroups] = useState([
-        {id: "group-0", category: "Fridge", numItems: 20, imageURL: "/fridge_image.webp"},
-        {id: "group-1", category: "Pantry", numItems: 10, imageURL: "/pantry_image.jpg"},
-        {id: "group-2", category: "Freezer", numItems: 5, imageURL: "/freezer_image.jpg"},
-        {id: "group-3", category: "Tools", numItems: 7, imageURL: "/tools_image.webp"},
+        {
+            id: "group-0",
+            category: "Fridge",
+            items: [
+                { id: "milk", name: "Milk", count: 1 },
+                { id: "eggs", name: "Eggs", count: 12 },
+                { id: "cheese", name: "Cheese", count: 2 },
+                { id: "butter", name: "Butter", count: 1 },
+                { id: "mayo", name: "Mayo", count: 1 },
+            ],
+            imageURL: "/fridge_image.webp",
+        },
+        {
+            id: "group-1",
+            category: "Pantry",
+            items: [
+                { id: "rice", name: "Rice", count: 5 },
+                { id: "pasta", name: "Pasta", count: 3 },
+                { id: "beans", name: "Canned Beans", count: 4 },
+                { id: "flour", name: "Flour", count: 2 },
+            ],
+            imageURL: "/pantry_image.jpg",
+        },
+        {
+            id: "group-2",
+            category: "Freezer",
+            items: [
+                { id: "pizza", name: "Frozen Pizza", count: 2 },
+                { id: "icecream", name: "Ice Cream", count: 1 },
+                { id: "veges", name: "Vegetables", count: 3 },
+            ],
+            imageURL: "/freezer_image.jpg",
+        },
+        {
+            id: "group-3",
+            category: "Tools",
+            items: [
+                { id: "knife", name: "Knife", count: 1 },
+                { id: "spat", name: "Spatula", count: 1 },
+            ],
+            imageURL: "/tools_image.webp",
+        },
     ]);
+
+    function handleDeleteGroup(groupId) {
+        console.log(`Delete group ${groupId}`);
+    }
+
+    function handleDeleteItem(groupId, itemId) {
+        console.log(`Deleting item ${itemId} from group ${groupId}`);
+    }
 
     const pantryItems = pantryGroups.map((item) =>
         <PantryGroup
             key={item.id}
+            groupId={item.id}
             name={item.category}
-            numItems={item.numItems}
-            imageURL={item.imageURL} />
+            items={item.items}
+            imageURL={item.imageURL}
+            handleDeleteGroup={handleDeleteGroup}
+            handleDeleteItem={handleDeleteItem}/>
     )
 
     function addCategory(pantryGroupName) {
-        console.log(`adding ${pantryGroupName}`);
-        const newPantryGroup = { id: `todo-${nanoid()}`, category: pantryGroupName, numItems: 0, imageURL: "/default_pantry.jpg" };
+        const newPantryGroup = {
+            id: `group-${nanoid()}`,
+            category: pantryGroupName,
+            items: [], // Start with an empty items list
+            imageURL: "/default_pantry.jpg",
+        };
         setPantryGroups([...pantryGroups, newPantryGroup]);
     }
 
+
     return (
         <>
-            <body className="flex flex-col border-3 bg-amber-100 min-h-screen">
+            <div className="flex flex-col border-3 bg-amber-100 min-h-screen">
                 <div className="sticky top-0 z-1">
                     <Navbar/>
                 </div>
@@ -38,25 +93,16 @@ function Home() {
                     <SearchBar />
                     <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] md:flex md:flex-wrap gap-6">
                         {pantryItems}
-                        {/*<li className="flex items-center justify-center min-h-24 md:min-w-[120px]">*/}
-                        {/*    <button*/}
-                        {/*        className="text-3xl min-w-28 flex items-center justify-center cursor-pointer"*/}
-                        {/*        onClick={() => addCategory("Default Cow")}*/}
-                        {/*    >*/}
-                        {/*        +*/}
-                        {/*    </button>*/}
-                        {/*</li>*/}
-
                         <li
-                            className="flex items-center justify-center min-h-24 md:min-w-[120px] cursor-pointer"
-                            onClick={() => addCategory("Default Cow")}
+                            className="flex items-center justify-center rounded-sm min-h-42 md:min-w-[240px] p-2 text-[#3b1105] cursor-pointer text-4xl"
+                            onClick={() => addCategory("Default Category")}
                         >
                             +
                         </li>
                     </ul>
 
                 </div>
-            </body>
+            </div>
         </>
     )
 }
