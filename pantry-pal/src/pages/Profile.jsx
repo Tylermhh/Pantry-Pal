@@ -3,11 +3,8 @@ import Navbar from "../components/Navbar.jsx";
 function Profile() {
     return (
         <>
-            <div className="flex flex-col border-3 bg-amber-100 min-h-screen">
-                <div className="sticky top-0 z-1">
-                    <Navbar/>
-                </div>
-                <div className="flex flex-col w-full gap-4 items-center justify-center min-h-96 text-orange-950">
+            <div className="flex flex-col bgPrimary textPrimary min-h-screen">
+                <div className="flex flex-col w-full gap-4 items-center justify-center min-h-96 ">
                     <img
                         src={"/default_cow.jpg"}
                         alt={"profile picture"}
@@ -25,7 +22,7 @@ function Profile() {
                     </ul>
 
 
-                    <button className="bg-amber-700 text-white px-3 py-1 mt-2 rounded-md cursor-pointer">
+                    <button className="bgSecondary text-white px-3 py-1 mt-2 rounded-md cursor-pointer">
                         Sign Out
                     </button>
                 </div>

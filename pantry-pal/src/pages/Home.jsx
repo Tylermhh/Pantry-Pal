@@ -131,10 +131,7 @@ function Home() {
 
     return (
         <>
-            <div className="flex flex-col border-3 bg-amber-100 min-h-screen">
-                <div className="sticky top-0 z-1">
-                    <Navbar/>
-                </div>
+            <div className="flex flex-col bgPrimary textPrimary min-h-screen">
 
                 {/*list of saved categories*/}
                 <div className="flex flex-col justify-center p-2 gap-2">
@@ -142,7 +139,7 @@ function Home() {
                     <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] md:flex md:flex-wrap gap-6">
                         {pantryItems}
                         <li
-                            className="flex items-center justify-center rounded-sm min-h-42 md:min-w-[240px] p-2 text-[#3b1105] cursor-pointer text-4xl"
+                            className="flex items-center justify-center rounded-sm min-h-42 md:min-w-[240px] p-2 cursor-pointer text-4xl"
                             onClick={() => addCategory("Default Category")}
                         >
                             +

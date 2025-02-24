@@ -16,14 +16,14 @@ function PantryGroupDetails(props) {
             handleModifyItem={props.handleModifyItem}
         />)
     return (
-        <div className="flex flex-col gap-4 bg-amber-100  ">
+        <div className="flex flex-col gap-4 bgPrimary">
             <img src={props.imageURL}
                  alt={props.name}
                  className="min-w-80 h-32 object-cover rounded-sm" />
             <p className=""> Items Stored:</p>
             {ItemRows}
 
-            <div className="flex gap-3  justify-between"> {/* Unfortunately comments in JSX have to be done like this */}
+            <div className="flex gap-3 justify-between"> {/* Unfortunately comments in JSX have to be done like this */}
                 <input
                     id="addItem-name"
                     className="border rounded-sm pl-1.5"
@@ -41,7 +41,7 @@ function PantryGroupDetails(props) {
                 <button
                     id="addTask-button"
                     onClick={() => {props.handleNewItem(props.groupId, newItemName, newItemCount)}}
-                    className="bg-amber-800 text-white rounded-sm px-1.5 py-1"
+                    className="bgSecondary textSecondary rounded-sm px-1.5 py-1"
                 >
                     Add
                 </button>
@@ -50,7 +50,7 @@ function PantryGroupDetails(props) {
             <button
                 id="addTask-button"
                 onClick={() => {props.handleDeleteGroup(props.groupId)}}
-                className="bg-amber-800 text-white rounded-sm px-1.5 py-1"
+                className="bgSecondary textSecondary rounded-sm px-1.5 py-1"
             >
                 Delete Whole Group
             </button>

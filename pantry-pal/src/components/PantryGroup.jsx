@@ -20,7 +20,7 @@ function PantryGroup(props) {
                     handleNewItem={props.handleNewItem}
                 />
             </Modal>
-            <li className="bg-[#ebad6a] rounded-sm min-h-42 md:min-w-[240px] p-2 text-[#3b1105] cursor-pointer"
+            <li className="bgCards rounded-sm min-h-42 md:min-w-[240px] p-2 cursor-pointer"
                 onClick={() => {
                     setIsOpen(true)
                 }}>

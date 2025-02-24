@@ -1,1 +1,44 @@
 @import "tailwindcss";
+
+:root {
+    --color-background-primary: #fef3c6;
+    --color-text-primary: #441306;
+    --color-text-secondary: #ffffff;
+    --color-background-secondary: #973c00;
+    --color-text-header: #000;
+    --color-background-cards: #ebad6a;
+}
+
+body.dark-mode {
+    --color-background-primary: #441306;
+    --color-text-primary: #fef3c6;
+    --color-text-secondary: #973c00;
+    --color-background-secondary: #fef3c6;
+    --color-text-header: #000;
+    --color-background-cards: #ebad6a;
+}
+
+.bgPrimary {
+    background-color: var(--color-background-primary);
+}
+
+
+.textPrimary {
+    color: var(--color-text-primary);
+}
+
+.textSecondary {
+    color: var(--color-text-secondary);
+}
+
+.bgSecondary {
+    background-color: var(--color-background-secondary);
+}
+
+.textHeader {
+    color: var(--color-text-header);
+}
+
+.bgCards {
+    background-color: var(--color-background-cards);
+}
