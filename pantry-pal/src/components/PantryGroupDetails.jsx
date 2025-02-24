@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
 import ItemRow from "./ItemRow.jsx";
 import {useState} from "react";
+import {Spinner} from "./Spinner.jsx";
 
 function PantryGroupDetails(props) {
     const [newItemName, setNewItemName] = useState("");
     const [newItemCount, setNewItemCount] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
     const ItemRows = props.items.map((item) =>
         <ItemRow
             key={item.id}
@@ -15,6 +18,21 @@ function PantryGroupDetails(props) {
             handleDeleteItem={props.handleDeleteItem}
             handleModifyItem={props.handleModifyItem}
         />)
+
+    function handleAddItem() {
+        setIsLoading(true); // Show spinner
+
+        async function addItemWithDelay() {
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Wait for 2 seconds
+            props.handleNewItem(props.groupId, newItemName, newItemCount);
+            setIsLoading(false); // Hide spinner after delay
+            setNewItemName(""); // Clear input fields
+            setNewItemCount("");
+        }
+
+        addItemWithDelay();
+    }
+
     return (
         <div className="flex flex-col gap-4 bgPrimary">
             <img src={props.imageURL}
@@ -39,8 +57,8 @@ function PantryGroupDetails(props) {
                     onChange={(e) => setNewItemCount(parseInt(e.target.value))}
                 />
                 <button
-                    id="addTask-button"
-                    onClick={() => {props.handleNewItem(props.groupId, newItemName, newItemCount)}}
+                    id="addItem-button"
+                    onClick={handleAddItem}
                     className="bgSecondary textSecondary rounded-sm px-1.5 py-1"
                 >
                     Add
@@ -48,12 +66,13 @@ function PantryGroupDetails(props) {
             </div>
 
             <button
-                id="addTask-button"
+                id="removeGroup-button"
                 onClick={() => {props.handleDeleteGroup(props.groupId)}}
                 className="bgSecondary textSecondary rounded-sm px-1.5 py-1"
             >
                 Delete Whole Group
             </button>
+            {isLoading ? <Spinner/> : null}
         </div>
     )
 }

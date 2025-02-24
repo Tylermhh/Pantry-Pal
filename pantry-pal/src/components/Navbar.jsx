@@ -4,9 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useEffect, useState} from "react";
 
 function Navbar() {
-    const [darkMode, setDarkMode] = useState(() => {
-        return localStorage.getItem("darkMode") === "true";
-    });
+    const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
         if (darkMode) {
@@ -14,12 +12,12 @@ function Navbar() {
         } else {
             document.body.classList.remove("dark-mode");
         }
-        localStorage.setItem("darkMode", darkMode);
     }, [darkMode]);
 
     function handleToggle() {
         setDarkMode(prevMode => !prevMode);
     }
+
     return (
         <header className="flex bgSecondary textHeader min-h-10 items-center px-4">
             <nav className="flex gap-10 justify-between w-full">

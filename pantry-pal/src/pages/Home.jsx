@@ -52,6 +52,10 @@ function Home() {
         },
     ]);
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     function handleDeleteGroup(groupId) {
         setPantryGroups((prevGroups) => prevGroups.filter(group => group.id !== groupId));
     }
@@ -84,9 +88,10 @@ function Home() {
 
     function handleNewItem(groupId, itemName, itemCount) {
         console.log(`Adding new item ${itemName} with count ${itemCount} to group ${groupId}`);
+
         const newItem = {
             id: nanoid(),
-            name: itemName,
+            name: capitalizeFirstLetter(itemName),
             count: itemCount,
         }
         setPantryGroups((prevGroups) =>
@@ -139,7 +144,7 @@ function Home() {
                     <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] md:flex md:flex-wrap gap-6">
                         {pantryItems}
                         <li
-                            className="flex items-center justify-center rounded-sm min-h-42 md:min-w-[240px] p-2 cursor-pointer text-4xl"
+                            className="flex items-center justify-center rounded-sm min-h-42 md:min-w-[240px] p-2 cursor-pointer textInverse text-4xl"
                             onClick={() => addCategory("Default Category")}
                         >
                             +

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 function SearchBar(props) {
     return (
-        <div className="relative flex items-center max-w-3xl">
+        <div className="relative textInverse flex items-center max-w-3xl">
             {/* Magnifying Glass Icon */}
             <FontAwesomeIcon
                 icon={faMagnifyingGlass}

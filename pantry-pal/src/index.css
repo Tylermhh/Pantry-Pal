@@ -7,15 +7,17 @@
     --color-background-secondary: #973c00;
     --color-text-header: #000;
     --color-background-cards: #ebad6a;
+    --color-text-secondary-inverse: #441306;
 }
 
 body.dark-mode {
     --color-background-primary: #441306;
-    --color-text-primary: #fef3c6;
+    --color-text-primary: #441306;
     --color-text-secondary: #973c00;
-    --color-background-secondary: #fef3c6;
+    --color-background-secondary: #ebad6a;
     --color-text-header: #000;
-    --color-background-cards: #ebad6a;
+    --color-background-cards: #fef3c6;
+    --color-text-secondary-inverse: #fef3c6;
 }
 
 .bgPrimary {
@@ -41,4 +43,8 @@ body.dark-mode {
 
 .bgCards {
     background-color: var(--color-background-cards);
+}
+
+.textInverse {
+    color: var(--color-text-secondary-inverse);
 }

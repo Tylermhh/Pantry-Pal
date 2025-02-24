@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 import PropTypes from "prop-types";
 import {Outlet} from "react-router-dom";
 
-export function MainLayout(props) {
+export function MainLayout() {
     return (
         <div>
             <div className="sticky top-0 z-1">
