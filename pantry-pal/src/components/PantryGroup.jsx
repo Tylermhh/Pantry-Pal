@@ -17,6 +17,7 @@ function PantryGroup(props) {
                     handleDeleteGroup={props.handleDeleteGroup}
                     handleDeleteItem={props.handleDeleteItem}
                     handleModifyItem={props.handleModifyItem}
+                    handleNewItem={props.handleNewItem}
                 />
             </Modal>
             <li className="bg-[#ebad6a] rounded-sm min-h-42 md:min-w-[240px] p-2 text-[#3b1105] cursor-pointer"
@@ -43,6 +44,7 @@ PantryGroup.propTypes = {
     handleDeleteGroup: PropTypes.func.isRequired,
     handleDeleteItem: PropTypes.func.isRequired,
     handleModifyItem: PropTypes.func.isRequired,
+    handleNewItem: PropTypes.func.isRequired,
 };
 
 export default PantryGroup;

@@ -15,7 +15,7 @@ function Modal(props) {
     return (props.isOpen ?
         (
             <div
-                className="flex absolute top-0 left-0 w-screen h-screen bg-black/50 rounded-lg justify-center items-center"
+                className="flex fixed top-0 left-0 w-full h-full bg-black/50 rounded-lg justify-center items-center"
                 onClick={overlayClickHandler}
             >
                 <div ref={inputRef} className="flex flex-col gap-4 bg-amber-100 rounded-lg p-3 w-auto m-3">

@@ -82,6 +82,23 @@ function Home() {
         );
     }
 
+    function handleNewItem(groupId, itemName, itemCount) {
+        console.log(`Adding new item ${itemName} with count ${itemCount} to group ${groupId}`);
+        const newItem = {
+            id: nanoid(),
+            name: itemName,
+            count: itemCount,
+        }
+        setPantryGroups((prevGroups) =>
+            prevGroups.map((group) =>
+                group.id === groupId
+                    ? {...group,
+                        items:  [...group.items, newItem]
+                    } : group
+            )
+        );
+    }
+
 
     const filteredPantryGroups = pantryGroups.filter(group =>
         group.category.toLowerCase().includes(searchQuery.toLowerCase())
@@ -97,6 +114,7 @@ function Home() {
             handleDeleteGroup={handleDeleteGroup}
             handleDeleteItem={handleDeleteItem}
             handleModifyItem={handleModifyItem}
+            handleNewItem={handleNewItem}
         />
     )
 
