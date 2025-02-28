@@ -1,8 +1,13 @@
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import PropTypes from "prop-types";
 
-function SearchBar(props) {
+// Define the type for props
+interface SearchBarProps {
+    searchQuery: string;
+    setSearchQuery: (query: string) => void;
+}
+
+function SearchBar(props: SearchBarProps) {
     return (
         <div className="relative textInverse flex items-center max-w-3xl">
             {/* Magnifying Glass Icon */}
@@ -22,10 +27,10 @@ function SearchBar(props) {
         </div>
     )
 }
-
-SearchBar.propTypes = {
-    searchQuery: PropTypes.string.isRequired,
-    setSearchQuery: PropTypes.func.isRequired,
-}
+//
+// SearchBar.propTypes = {
+//     searchQuery: PropTypes.string.isRequired,
+//     setSearchQuery: PropTypes.func.isRequired,
+// }
 
 export default SearchBar;

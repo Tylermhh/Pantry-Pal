@@ -1,14 +1,20 @@
 import {faX} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {useRef} from "react";
-import PropTypes from "prop-types";
+import React, {useRef} from "react";
 
-function Modal(props) {
-    const inputRef = useRef(null);
+interface ModalProps {
+    isOpen: boolean,
+    onCloseRequested: () => void,
+    headerLabel: string,
+    children: React.ReactNode,
+}
 
-    function overlayClickHandler(e) {
-        if (!inputRef.current.contains(e.target)) {
-            props.onCloseRequested()
+function Modal(props : ModalProps) {
+    const inputRef = useRef<HTMLDivElement | null>(null);
+
+    function overlayClickHandler(e: React.MouseEvent<HTMLDivElement>) {  // Correct event type
+        if (inputRef.current && !inputRef.current.contains(e.target as Node)) {
+            props.onCloseRequested();
         }
     }
 
@@ -32,12 +38,12 @@ function Modal(props) {
         : null)
 }
 
-// Define expected prop types
-Modal.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    onCloseRequested: PropTypes.func.isRequired,
-    headerLabel: PropTypes.string.isRequired,
-    children: PropTypes.node,
-};
+// // Define expected prop types
+// Modal.propTypes = {
+//     isOpen: PropTypes.bool.isRequired,
+//     onCloseRequested: PropTypes.func.isRequired,
+//     headerLabel: PropTypes.string.isRequired,
+//     children: PropTypes.node,
+// };
 
 export default Modal;

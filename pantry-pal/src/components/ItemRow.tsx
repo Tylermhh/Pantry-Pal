@@ -1,9 +1,17 @@
 import {faTrashCan, faPlus, faSubtract} from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
+interface ItemRowProps {
+    key: string;
+    groupId: string;
+    itemId: string;
+    name: string;
+    count: number;
+    handleDeleteItem: (groupId: string, itemId: string) => void;
+    handleModifyItem: (groupId: string, itemId: string, operation: string) => void;
+}
 
-function ItemRow(props) {
+function ItemRow(props: ItemRowProps) {
     return (
         <li className="flex justify-between items-center">
             <label className="flex gap-2 items-center leading-none" htmlFor={props.itemId}>
@@ -18,14 +26,14 @@ function ItemRow(props) {
     )
 }
 
-ItemRow.propTypes = {
-    key: PropTypes.string.isRequired,
-    groupId: PropTypes.string.isRequired,
-    itemId: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    count: PropTypes.number.isRequired,
-    handleDeleteItem: PropTypes.func.isRequired,
-    handleModifyItem: PropTypes.func.isRequired,
-}
+// ItemRow.propTypes = {
+//     key: PropTypes.string.isRequired,
+//     groupId: PropTypes.string.isRequired,
+//     itemId: PropTypes.string.isRequired,
+//     name: PropTypes.string.isRequired,
+//     count: PropTypes.number.isRequired,
+//     handleDeleteItem: PropTypes.func.isRequired,
+//     handleModifyItem: PropTypes.func.isRequired,
+// }
 
 export default ItemRow;

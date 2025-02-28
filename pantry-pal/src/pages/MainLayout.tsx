@@ -1,5 +1,4 @@
-import Navbar from "../components/Navbar";
-import PropTypes from "prop-types";
+import Navbar from "../components/Navbar.tsx";
 import {Outlet} from "react-router-dom";
 
 export function MainLayout() {
@@ -13,8 +12,4 @@ export function MainLayout() {
             </div>
         </div>
     );
-}
-
-MainLayout.propTypes = {
-    children: PropTypes.node,
 }

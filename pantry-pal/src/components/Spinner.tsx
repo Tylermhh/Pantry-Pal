@@ -1,6 +1,10 @@
 import PropTypes from "prop-types";
 
-export function Spinner({className}) {
+interface SpinnerProps {
+    className?: string;
+}
+
+export function Spinner({className} : SpinnerProps) {
     const defaultClasses = "mr-3 -ml-1 size-5 animate-spin ";
     // If className is undefined, don't want to append the string "undefined", but rather just an empty string
     const additionalClasses = className || "";
@@ -20,8 +24,4 @@ export function Spinner({className}) {
             />
         </svg>
     );
-}
-
-Spinner.propTypes = {
-    className: PropTypes.string,
 }

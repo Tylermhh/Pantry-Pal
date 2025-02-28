@@ -1,8 +1,22 @@
-import PantryGroup from "../components/PantryGroup.jsx";
-import Navbar from "../components/Navbar.jsx";
-import SearchBar from "../components/SearchBar.jsx";
+import PantryGroup from "../components/PantryGroup.js";
+import Navbar from "../components/Navbar.tsx";
+import SearchBar from "../components/SearchBar.tsx";
 import {useState} from "react";
 import { nanoid } from "nanoid";
+
+export interface Item {
+    id: string;
+    name: string;
+    count: number;
+}
+
+// Define the interface for each pantry group
+interface PantryGroupType {
+    id: string;
+    category: string;
+    items: Item[];  // Use the Item interface here
+    imageURL: string;
+}
 
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -52,15 +66,15 @@ function Home() {
         },
     ]);
 
-    function capitalizeFirstLetter(string) {
+    function capitalizeFirstLetter(string: string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    function handleDeleteGroup(groupId) {
+    function handleDeleteGroup(groupId: string) {
         setPantryGroups((prevGroups) => prevGroups.filter(group => group.id !== groupId));
     }
 
-    function handleDeleteItem(groupId, itemId) {
+    function handleDeleteItem(groupId: string, itemId: string) {
         setPantryGroups((prevGroups) =>
             prevGroups.map((group) =>
                 group.id === groupId
@@ -70,7 +84,7 @@ function Home() {
         );
     }
 
-    function handleModifyItem(groupId, itemId, operation) {
+    function handleModifyItem(groupId: string, itemId: string, operation: string) {
         setPantryGroups((prevGroups) =>
             prevGroups.map((group) =>
                 group.id === groupId
@@ -86,7 +100,7 @@ function Home() {
         );
     }
 
-    function handleNewItem(groupId, itemName, itemCount) {
+    function handleNewItem(groupId: string, itemName: string, itemCount: number) {
         console.log(`Adding new item ${itemName} with count ${itemCount} to group ${groupId}`);
 
         const newItem = {
@@ -115,7 +129,7 @@ function Home() {
             groupId={item.id}
             name={item.category}
             items={item.items}
-            imageURL={item.imageURL}
+            imageUrl={item.imageURL}
             handleDeleteGroup={handleDeleteGroup}
             handleDeleteItem={handleDeleteItem}
             handleModifyItem={handleModifyItem}
@@ -123,7 +137,7 @@ function Home() {
         />
     )
 
-    function addCategory(pantryGroupName) {
+    function addCategory(pantryGroupName: string) {
         const newPantryGroup = {
             id: `group-${nanoid()}`,
             category: pantryGroupName,

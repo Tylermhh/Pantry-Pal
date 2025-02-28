@@ -1,8 +1,8 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home.jsx";
-import Profile from "./pages/Profile.jsx";
-import {MainLayout} from "./pages/MainLayout.jsx";
+import Home from "./pages/Home.js";
+import Profile from "./pages/Profile.js";
+import {MainLayout} from "./pages/MainLayout.js";
 
 function App() {
     return (
