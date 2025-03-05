@@ -1,0 +1,69 @@
+[{
+  "_id": "tyler@example.com",
+  "username": "tyler",
+  "data": [
+        {
+            "id": "group-0",
+            "category": "Fridge",
+            "items": [
+                { "id": "milk", "name": "Milk", "count": 1 },
+                { "id": "eggs", "name": "Eggs", "count": 12 },
+                { "id": "cheese", "name": "Cheese", "count": 2 },
+                { "id": "butter", "name": "Butter", "count": 1 },
+                { "id": "mayo", "name": "Mayo", "count": 1 }
+            ],
+            "imageURL": "/fridge_image.webp"
+        },
+        {
+            "id": "group-1",
+            "category": "Pantry",
+            "items": [
+                { "id": "rice", "name": "Rice", "count": 5 },
+                { "id": "pasta", "name": "Pasta", "count": 3 },
+                { "id": "beans", "name": "Canned Beans", "count": 4 },
+                { "id": "flour", "name": "Flour", "count": 2 }
+            ],
+            "imageURL": "/pantry_image.jpg"
+        },
+        {
+            "id": "group-2",
+            "category": "Freezer",
+            "items": [
+                { "id": "pizza", "name": "Frozen Pizza", "count": 2 },
+                { "id": "icecream", "name": "Ice Cream", "count": 1 },
+                { "id": "veges", "name": "Vegetables", "count": 3 }
+            ],
+            "imageURL": "/freezer_image.jpg"
+        },
+        {
+            "id": "group-3",
+            "category": "Tools",
+            "items": [
+                { "id": "knife", "name": "Knife", "count": 1 },
+                { "id": "spat", "name": "Spatula", "count": 1 }
+            ],
+            "imageURL": "/tools_image.webp"
+        }
+    ]
+},
+{
+  "_id": "mocha@example.com",
+  "username": "mocha123",
+  "data": [
+    {
+        "id": "mocha-group-0",
+        "category": "Fridge",
+        "items": [
+            { "id": "oatmilk", "name": "Oatmilk", "count": 1 },
+            { "id": "tomatoes", "name": "Tomatoes", "count": 10 },
+            { "id": "yams", "name": "Yams", "count": 20 }
+        ],
+        "imageURL": "/fridge_image.webp"
+    }
+  ]
+},
+{
+  "_id": "bob@example.com",
+  "username": "bob",
+  "data": []
+}]

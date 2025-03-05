@@ -11,7 +11,7 @@ export interface Item {
 }
 
 // Define the interface for each pantry group
-interface PantryGroupType {
+export interface PantryGroup {
     id: string;
     category: string;
     items: Item[];  // Use the Item interface here
