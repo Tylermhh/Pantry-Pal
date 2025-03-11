@@ -3,44 +3,44 @@
   "username": "tyler",
   "data": [
         {
-            "id": "group-0",
+            "_id": "group-0",
             "category": "Fridge",
             "items": [
-                { "id": "milk", "name": "Milk", "count": 1 },
-                { "id": "eggs", "name": "Eggs", "count": 12 },
-                { "id": "cheese", "name": "Cheese", "count": 2 },
-                { "id": "butter", "name": "Butter", "count": 1 },
-                { "id": "mayo", "name": "Mayo", "count": 1 }
+                { "_id": "milk", "name": "Milk", "count": 1 },
+                { "_id": "eggs", "name": "Eggs", "count": 12 },
+                { "_id": "cheese", "name": "Cheese", "count": 2 },
+                { "_id": "butter", "name": "Butter", "count": 1 },
+                { "_id": "mayo", "name": "Mayo", "count": 1 }
             ],
             "imageURL": "/fridge_image.webp"
         },
         {
-            "id": "group-1",
+            "_id": "group-1",
             "category": "Pantry",
             "items": [
-                { "id": "rice", "name": "Rice", "count": 5 },
-                { "id": "pasta", "name": "Pasta", "count": 3 },
-                { "id": "beans", "name": "Canned Beans", "count": 4 },
-                { "id": "flour", "name": "Flour", "count": 2 }
+                { "_id": "rice", "name": "Rice", "count": 5 },
+                { "_id": "pasta", "name": "Pasta", "count": 3 },
+                { "_id": "beans", "name": "Canned Beans", "count": 4 },
+                { "_id": "flour", "name": "Flour", "count": 2 }
             ],
             "imageURL": "/pantry_image.jpg"
         },
         {
-            "id": "group-2",
+            "_id": "group-2",
             "category": "Freezer",
             "items": [
-                { "id": "pizza", "name": "Frozen Pizza", "count": 2 },
-                { "id": "icecream", "name": "Ice Cream", "count": 1 },
-                { "id": "veges", "name": "Vegetables", "count": 3 }
+                { "_id": "pizza", "name": "Frozen Pizza", "count": 2 },
+                { "_id": "icecream", "name": "Ice Cream", "count": 1 },
+                { "_id": "veges", "name": "Vegetables", "count": 3 }
             ],
             "imageURL": "/freezer_image.jpg"
         },
         {
-            "id": "group-3",
+            "_id": "group-3",
             "category": "Tools",
             "items": [
-                { "id": "knife", "name": "Knife", "count": 1 },
-                { "id": "spat", "name": "Spatula", "count": 1 }
+                { "_id": "knife", "name": "Knife", "count": 1 },
+                { "_id": "spat", "name": "Spatula", "count": 1 }
             ],
             "imageURL": "/tools_image.webp"
         }
@@ -51,12 +51,12 @@
   "username": "mocha123",
   "data": [
     {
-        "id": "mocha-group-0",
+        "_id": "mocha-group-0",
         "category": "Fridge",
         "items": [
-            { "id": "oatmilk", "name": "Oatmilk", "count": 1 },
-            { "id": "tomatoes", "name": "Tomatoes", "count": 10 },
-            { "id": "yams", "name": "Yams", "count": 20 }
+            { "_id": "oatmilk", "name": "Oatmilk", "count": 1 },
+            { "_id": "tomatoes", "name": "Tomatoes", "count": 10 },
+            { "_id": "yams", "name": "Yams", "count": 20 }
         ],
         "imageURL": "/fridge_image.webp"
     }

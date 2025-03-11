@@ -1,0 +1,59 @@
+### This is a comment
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{ "username": "newuser", "password": "password" }
+
+### A second example, each request should be delimited by a triple hash
+GET http://localhost:3000/api/data
+
+### Missing Username or Password Test
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{ "username": "newuser" }
+
+### Login Verification Test
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{ "username": "newuser", "password": "password" }
+
+### Verification Test (wrong password)
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{ "username": "newuser", "password": "wrong password" }
+
+### GET with Token Verification Test
+GET http://localhost:3000/api/data?user=tyler@example.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ld3VzZXIiLCJpYXQiOjE3NDE2NzQ1MDQsImV4cCI6MTc0MTc2MDkwNH0.VGxTlNSswMSBhA0Bz2q0yOYbQoFcxH8VminjCXSykA4
+
+
+### PATCH updating user PantryGroup stuff
+PATCH http://localhost:3000/api/data/bob@example.com
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ld3VzZXIiLCJpYXQiOjE3NDE2NzQ1MDQsImV4cCI6MTc0MTc2MDkwNH0.VGxTlNSswMSBhA0Bz2q0yOYbQoFcxH8VminjCXSykA4
+
+{
+  "newPantryGroups": [
+    {
+      "_id": "bob-group-0",
+      "category": "Fridge",
+      "items": [
+        { "_id": "milk", "name": "Milk", "count": 2 },
+        { "_id": "cheese", "name": "Cheese", "count": 5 }
+      ],
+      "imageURL": "/fridge_image_new.webp"
+    },
+    {
+      "_id": "bob-group-1",
+      "category": "Pantry",
+      "items": [
+        { "_id": "rice", "name": "Rice", "count": 3 },
+        { "_id": "beans", "name": "Beans", "count": 10 }
+      ],
+      "imageURL": "/pantry_image_new.webp"
+    }
+  ]
+}

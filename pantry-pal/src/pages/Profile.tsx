@@ -1,6 +1,11 @@
 import Navbar from "../components/Navbar.js";
 
-function Profile() {
+interface ProfileProps {
+    userName: string;
+    email: string;
+}
+
+function Profile(props: ProfileProps) {
     return (
         <>
             <div className="flex flex-col bgPrimary textInverse min-h-screen">
@@ -13,11 +18,11 @@ function Profile() {
                     <ul className="flex flex-col gap-3 text-center">
                         <li>
                             <p className="font-bold text-xl leading-tight">Name</p>
-                            <p className="text-xl leading-tight">Min Hset Hlaing</p>
+                            <p className="text-xl leading-tight">{props.userName}</p>
                         </li>
                         <li>
                             <p className="font-bold text-xl leading-tight">Email</p>
-                            <p className=" text-xl leading-tight">hlaing@calpoly.edu</p>
+                            <p className=" text-xl leading-tight">{props.email}</p>
                         </li>
                     </ul>
 

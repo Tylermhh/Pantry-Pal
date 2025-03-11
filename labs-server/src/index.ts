@@ -2,9 +2,10 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import * as path from "node:path";
 import { MongoClient } from "mongodb";
-import {ImageProvider} from "./ImageProvider";
+import {DataProvider} from "./DataProvider";
 import { ObjectId } from "mongodb";
-import {registerDataRoutes} from "./routes/images";
+import {registerDataRoutes} from "./routes/data";
+import {registerAuthRoutes, verifyAuthToken} from "./routes/auth";
 
 dotenv.config(); // Read the .env file in the current working directory, and load values into process.env.
 const PORT = process.env.PORT || 3000;
@@ -28,11 +29,13 @@ async function setUpServer() {
     const app = express();
     app.use(express.static(staticDir));
     app.use(express.json());
+    app.use("/api/*", verifyAuthToken);
 
     app.get("/hello", (req: Request, res: Response) => {
         res.send("Hello, World");
     });
 
+    registerAuthRoutes(app, mongoClient);
     registerDataRoutes(app, mongoClient);
 
     app.get("*", (req: Request, res: Response) => {
