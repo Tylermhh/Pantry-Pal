@@ -4,6 +4,8 @@ import PantryGroupDetails from "./PantryGroupDetails.tsx";
 import {Item} from "../pages/Home.tsx";
 
 interface PantryGroupProps {
+    userId: string;
+    authToken: string;
     name: string;
     groupId: string;
     items: Item[];
@@ -14,24 +16,14 @@ interface PantryGroupProps {
     handleNewItem: (groupId: string, itemName: string, itemCount: number) => void;
 }
 
-// // Define expected prop types
-// PantryGroup.propTypes = {
-//     name: PropTypes.string.isRequired,
-//     groupId: PropTypes.string.isRequired,
-//     items: PropTypes.number.isRequired,
-//     imageURL: PropTypes.string.isRequired,
-//     handleDeleteGroup: PropTypes.func.isRequired,
-//     handleDeleteItem: PropTypes.func.isRequired,
-//     handleModifyItem: PropTypes.func.isRequired,
-//     handleNewItem: PropTypes.func.isRequired,
-// };
-
 function PantryGroup(props: PantryGroupProps) {
     const [isOpen, setIsOpen] = React.useState(false);
     return (
         <>
             <Modal headerLabel={`Your ${props.name}`} isOpen={isOpen} onCloseRequested={() => setIsOpen(false)}>
                 <PantryGroupDetails
+                    userId={props.userId}
+                    authToken={props.authToken}
                     name={props.name}
                     groupId={props.groupId}
                     imageUrl={props.imageUrl}
@@ -42,7 +34,7 @@ function PantryGroup(props: PantryGroupProps) {
                     handleNewItem={props.handleNewItem}
                 />
             </Modal>
-            <li className="bgCards rounded-sm min-h-42 md:min-w-[240px] p-2 cursor-pointer"
+            <li className="bgCards rounded-sm min-h-42 md:w-[230px] p-2 cursor-pointer"
                 onClick={() => {
                     setIsOpen(true)
                 }}>

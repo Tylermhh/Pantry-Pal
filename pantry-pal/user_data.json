@@ -1,6 +1,6 @@
 [{
-  "_id": "tyler@example.com",
-  "username": "tyler",
+  "_id": "newuser",
+  "username": "newuser",
   "data": [
         {
             "_id": "group-0",

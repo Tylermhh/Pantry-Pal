@@ -3,7 +3,8 @@ import Navbar from "../components/Navbar.tsx";
 import SearchBar from "../components/SearchBar.tsx";
 import {useEffect, useState} from "react";
 import { nanoid } from "nanoid";
-import {useDataFetching} from "./useDataFetching";
+import {useDataFetching} from "./useDataFetching.ts";
+import AddNewGroup from "../components/AddNewGroup.tsx";
 
 export interface Item {
     id: string;
@@ -12,7 +13,7 @@ export interface Item {
 }
 
 // Define the interface for each pantry group
-export interface PantryGroup {
+export interface PantryGroupType {
     id: string;
     category: string;
     items: Item[];  // Use the Item interface here
@@ -23,18 +24,16 @@ interface HomeProps {
     userId: string;
     authToken: string;
     isLoading: boolean;
-    pantryGroups: PantryGroup[];
-    setPantryGroups: (pantryGroups: PantryGroup[]) => void;
+    pantryGroups: PantryGroupType[];
+    setPantryGroups: (pantryGroups: PantryGroupType[]) => void;
 }
-
-
 
 
 function Home(props: HomeProps) {
     const [searchQuery, setSearchQuery] = useState("");
     const pantryGroups = props.pantryGroups;
 
-    async function updatePantryGroups(userId: String, authToken: String, newPantryGroups: PantryGroup[]) {
+    async function updatePantryGroups(userId: String, authToken: String, newPantryGroups: PantryGroupType[]) {
         const response = await fetch(`/api/data/${userId}`, {
             method: "PATCH",
             headers: {
@@ -126,6 +125,8 @@ function Home(props: HomeProps) {
     const pantryItems = filteredPantryGroups.map((item) =>
         <PantryGroup
             key={item.id}
+            userId={props.userId}
+            authToken={props.authToken}
             groupId={item.id}
             name={item.category}
             items={item.items}
@@ -163,12 +164,7 @@ function Home(props: HomeProps) {
                     <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                     <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] md:flex md:flex-wrap gap-6">
                         {pantryItems}
-                        <li
-                            className="flex items-center justify-center rounded-sm min-h-42 md:min-w-[240px] p-2 cursor-pointer textInverse text-4xl"
-                            onClick={() => addCategory("Default Category")}
-                        >
-                            +
-                        </li>
+                        <AddNewGroup name="Add New Group" onSubmit={addCategory} />
                     </ul>
 
                 </div>

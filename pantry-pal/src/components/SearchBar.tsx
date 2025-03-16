@@ -27,10 +27,5 @@ function SearchBar(props: SearchBarProps) {
         </div>
     )
 }
-//
-// SearchBar.propTypes = {
-//     searchQuery: PropTypes.string.isRequired,
-//     setSearchQuery: PropTypes.func.isRequired,
-// }
 
 export default SearchBar;

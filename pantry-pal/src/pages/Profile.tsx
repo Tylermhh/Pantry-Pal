@@ -17,11 +17,11 @@ function Profile(props: ProfileProps) {
                     />
                     <ul className="flex flex-col gap-3 text-center">
                         <li>
-                            <p className="font-bold text-xl leading-tight">Name</p>
+                            <p className="font-bold text-xl leading-tight">User ID</p>
                             <p className="text-xl leading-tight">{props.userName}</p>
                         </li>
                         <li>
-                            <p className="font-bold text-xl leading-tight">Email</p>
+                            <p className="font-bold text-xl leading-tight">Username</p>
                             <p className=" text-xl leading-tight">{props.email}</p>
                         </li>
                     </ul>

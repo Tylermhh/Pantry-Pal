@@ -3,8 +3,12 @@ import ItemRow from "./ItemRow.tsx";
 import {useState} from "react";
 import {Spinner} from "./Spinner.tsx";
 import {Item} from "../pages/Home.tsx";
+import {ImageUploadForm} from "./ImageUploadForm.tsx";
+import ChangeGroupImage from "./ChangeGroupImage.tsx";
 
 interface PantryGroupDetailsProps {
+    userId: string;
+    authToken: string;
     name: string;
     groupId: string;
     items: Item[];
@@ -57,46 +61,54 @@ function PantryGroupDetails(props: PantryGroupDetailsProps) {
     }
 
     return (
-        <div className="flex flex-col gap-4 bgPrimary">
-            <img src={props.imageUrl}
-                 alt={props.name}
-                 className="min-w-80 h-32 object-cover rounded-sm" />
-            <p className=""> Items Stored:</p>
-            {ItemRows}
+        <>
+            <div className="flex flex-col gap-4 bgPrimary">
+                <ChangeGroupImage
+                    authToken={props.authToken}
+                    userId={props.userId}
+                    groupId={props.groupId}
+                    name={props.name}
+                    imageUrl={props.imageUrl}
+                />
+                <p className=""> Items Stored:</p>
+                {ItemRows}
 
-            <div className="flex gap-3 justify-between"> {/* Unfortunately comments in JSX have to be done like this */}
-                <input
-                    id="addItem-name"
-                    className="border rounded-sm pl-1.5"
-                    placeholder="Item name"
-                    value={newItemName}
-                    onChange={(e) => setNewItemName(e.target.value)}
-                />
-                <input
-                    id="addItem-count"
-                    className="border rounded-sm pl-1.5"
-                    placeholder="Item Count"
-                    value={newItemCount}
-                    onChange={(e) => setNewItemCount(parseInt(e.target.value))}
-                />
+                <div className="flex gap-3 justify-between"> {/* Unfortunately comments in JSX have to be done like this */}
+                    <input
+                        id="addItem-name"
+                        className="border rounded-sm pl-1.5"
+                        placeholder="Item name"
+                        value={newItemName}
+                        onChange={(e) => setNewItemName(e.target.value)}
+                    />
+                    <input
+                        id="addItem-count"
+                        className="border rounded-sm pl-1.5"
+                        placeholder="Item Count"
+                        value={newItemCount}
+                        onChange={(e) => setNewItemCount(parseInt(e.target.value))}
+                    />
+                    <button
+                        id="addItem-button"
+                        onClick={handleAddItem}
+                        className="bgSecondary textSecondary rounded-sm px-1.5 py-1"
+                    >
+                        Add
+                    </button>
+                </div>
+
                 <button
-                    id="addItem-button"
-                    onClick={handleAddItem}
+                    id="removeGroup-button"
+                    onClick={() => {props.handleDeleteGroup(props.groupId)}}
                     className="bgSecondary textSecondary rounded-sm px-1.5 py-1"
                 >
-                    Add
+                    Delete Whole Group
                 </button>
+                {isLoading ? <Spinner/> : null}
             </div>
+            {/*<ImageUploadForm userId={props.userId} authToken={props.authToken} groupId={props.groupId} />*/}
+        </>
 
-            <button
-                id="removeGroup-button"
-                onClick={() => {props.handleDeleteGroup(props.groupId)}}
-                className="bgSecondary textSecondary rounded-sm px-1.5 py-1"
-            >
-                Delete Whole Group
-            </button>
-            {isLoading ? <Spinner/> : null}
-        </div>
     )
 }
 

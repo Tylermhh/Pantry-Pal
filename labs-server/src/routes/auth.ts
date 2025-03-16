@@ -40,6 +40,7 @@ export function verifyAuthToken(
     } else { // signatureKey already declared as a module-level variable
         jwt.verify(token, signatureKey, (error, decoded) => {
             if (decoded) {
+                res.locals.token = decoded;
                 next();
             } else {
                 res.status(403).end();
@@ -66,7 +67,7 @@ export function registerAuthRoutes(app: express.Application, mongoClient: MongoC
             const authToken = await generateAuthToken(username);
 
             {result ?
-                res.status(201).send({ token: authToken })
+                res.status(201).send({ userId: username, token: authToken })
                 :
                 res.status(400).send({
                     error: "Bad request",
@@ -93,7 +94,7 @@ export function registerAuthRoutes(app: express.Application, mongoClient: MongoC
 
             if (verificationRes){
                 const authToken = await generateAuthToken(username);
-                res.send({ token: authToken });
+                res.send({ userId: username, token: authToken });
             } else {
                 res.status(401).send({
                     error: "Bad request",

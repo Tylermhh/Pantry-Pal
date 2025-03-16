@@ -1,15 +1,17 @@
 import UsernamePasswordForm from "./UsernamePasswordForm.js";
 import {sendPostRequest} from "./sendPostRequest.js";
 import {useNavigate} from "react-router";
+import {createUserPantryData} from "./createUserPantryData.ts";
 
 export interface AuthPageProps {
     setAuthToken: (token: string) => void;
+    setUserId: (id: string) => void;
 }
 
 export default function RegisterPage(props: AuthPageProps) {
     const navigate = useNavigate();
-    async function handleSubmit(name: String, password: String) {
-        console.log("inside handle register submit")
+
+    async function handleSubmit(name: string, password: string) {
         const payload = {
             name: name,
             password: password,
@@ -31,8 +33,15 @@ export default function RegisterPage(props: AuthPageProps) {
         if (response.status === 201) {
             try {
                 const parsedResponse = await response.json();
-                console.log("response token: ", parsedResponse.token);
                 props.setAuthToken(parsedResponse.token);
+                props.setUserId(parsedResponse.userId);
+
+                try {
+                    await createUserPantryData(parsedResponse.userId, parsedResponse.userId, parsedResponse.token);
+                    console.log("Successfully created user pantry data");
+                } catch (error) {
+                    console.error("Error creating user pantry data:", error);
+                }
                 navigate('/');
             } catch (error) {
                 console.log(`Error parsing response token: ${error}`);

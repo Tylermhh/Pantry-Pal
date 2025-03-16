@@ -29,16 +29,14 @@ export default function LoginPage(props: AuthPageProps) {
         if (response.status === 200) {
             try {
                 const parsedResponse = await response.json();
-                console.log("response token: ", parsedResponse.token);
                 props.setAuthToken(parsedResponse.token);
+                props.setUserId(parsedResponse.userId);
+
                 navigate('/');
             } catch (error) {
                 console.log(`Error parsing response token: ${error}`);
             }
-
         }
-
-
     }
     return (
         <>
