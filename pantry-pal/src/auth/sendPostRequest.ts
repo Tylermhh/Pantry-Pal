@@ -1,4 +1,4 @@
-export async function sendPostRequest(url, payload) {
+export async function sendPostRequest(url: RequestInfo | URL, payload: { name: any; password: any; }) {
     const response = await fetch(url, {
         method: "POST",
         headers: {
